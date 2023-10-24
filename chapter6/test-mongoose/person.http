@@ -1,0 +1,29 @@
+# Setting server variable
+@server = http://localhost:3000
+
+### Send GET
+GET {{server}}/person
+
+### Send POST
+POST {{server}}/person
+Content-Type: application/json
+
+{
+    "name": "Andy Park",
+    "age": 30,
+    "email": "andy@backend.com"
+}
+
+### Comfrim generated document
+GET {{server}}/person.ady@backend.com: 
+
+### Send PUT, modify document
+PUT {{server}}/person/andy@backend.com
+Content-Type: application/json
+
+{
+    "age":32
+}
+
+### Delete document
+DELETE {{server}}/person/andy@backend.com
