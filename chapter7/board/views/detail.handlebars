@@ -1,0 +1,55 @@
+<h1>{{title}}</h1>
+<h2 class="text-xl">Title</h2>
+<div>
+    Writer: <b>Writer name</b>
+</div>
+<div>
+    Total: 9999 || Date : 2023-01-01 00:00:00
+    <button onclick="modifyPost()">Edit</button>
+    <button onclick="deletePost()">Delete</button>
+</div>
+
+<div>
+    <pre>Text</pre>
+</div>
+
+<section>
+    <div>
+        <h3>There are 3 comments</h3>
+    </div>
+
+    <form method="post" action="/write-comment">
+        <div>
+            <div>
+                <input type="text" name="name" placeholder="name" />
+                <input type="password" name="password" placeholder="pasword" />
+            </div>
+            <div>
+                <textarea cols="40" rows="3" name="comment" placeholder="Typing comment(s)"></textarea>
+                <br /><br /><button>Add Comment</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!-- Show Comment -->
+<section>
+    <div>
+        <div>
+            Writer: <b>Comment Writter</b>
+        </div>
+        <div>
+            WriteDate: 2023-01-01 00:00:00
+            <button onclick="deleteComment('1')">Delete</button>
+        </div>
+        <div>
+            <pre>{{comment}}</pre>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div>
+        <a href="/">To home</a>
+    </div>
+</footer>
