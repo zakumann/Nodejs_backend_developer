@@ -1,16 +1,17 @@
 <h1>{{title}}</h1>
-<h2 class="text-xl">Title</h2>
+{{#with post}}
+<h2 class="text-xl">{{title}}</h2>
 <div>
-    Writer: <b>Writer name</b>
+    Writer: <b>{{writer}}</b>
 </div>
 <div>
-    Total: 9999 || Date : 2023-01-01 00:00:00
+    Total: {{hits}} || {{dateString createdDt}}
     <button onclick="modifyPost()">Edit</button>
     <button onclick="deletePost()">Delete</button>
 </div>
 
 <div>
-    <pre>Text</pre>
+    <pre>{{content}}</pre>
 </div>
 
 <section>
@@ -47,9 +48,39 @@
         </div>
     </div>
 </section>
-
+{{/with}}
 <footer>
     <div>
-        <a href="/">To home</a>
+        <a href="/">To list</a>
     </div>
 </footer>
+<script>
+    const postOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }
+
+    async function modifyPost() {
+        const password = prompt("Typing your Password");
+        if (!password){
+            return;
+        }
+
+        const result = await fetch("/check-password", {
+            ...postOption,
+            body: JSON.stringify({ id: "{{post._id}}", password })
+        });
+
+        const data = await result.json();
+
+        if (data.isExist){
+            document.location = "/modify/{{post._id}}"
+        }else {
+            alert("Wrong password.");
+        }
+    }
+    
+    async function deletePost() { }
+</script>

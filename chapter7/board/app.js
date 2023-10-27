@@ -31,7 +31,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/write", (req, res) => {
-    res.render("write", { title: "Test Forum" });
+    res.render("write", { title: "Test Forum", mode: "create" });
 });
 
 app.get("/write", async (req, res) => {
@@ -43,10 +43,47 @@ app.get("/write", async (req, res) => {
 });
 
 app.get("/detail/:id", async(req, res) => {
+    const result = await postService.getDetailPost(collection, req.params.id);
     res.render("detail", {
-        title: "Test Forum",
+        title: "테스트 게시판",
+        post: result.value,
     });
 });
+
+app.post("/check-password", async (req, res) => {
+    // bring id and password
+    const { id, password } = req.body;
+  
+    const post = postService.getPostByIdAndPassword(collection, { id, password });
+  
+    if (!post) {
+      return res.status(404).json({ isExist: false });
+    } else {
+      return res.json({ isExist: true });
+    }
+  });
+  
+  app.get("/modify/:id", async (req, res) => {
+    const { id } = req.params.id;
+    const post = await postService.getPostById(collection, req.params.id);
+    console.log(post);
+    res.render("write", { title: "테스트 게시판 ", mode: "modify", post });
+  });
+  
+  app.post("/modify/", async (req, res) => {
+    const { id, title, writer, password, content } = req.body;
+  
+    const post = {
+      title,
+      writer,
+      password,
+      content,
+      createdDt: new Date().toISOString(),
+    };
+
+    const result = postService.updatePost(collection, id, post);
+    res.redirect(`/detail/${id}`);
+  });
 
 let collection;
 app.listen(3000, async () => {

@@ -1,33 +1,36 @@
-<h1>[{{title}}]Add subject</h1>
-
+<!-- change mode -->
+<h1>[{{title}}] Text {{#if (eq mode "create")}}Typing{{else}}modify{{/if}}</h1>
 <div>
-    <!-- Writing Form -->
-    <form name="boardForm" method="post" action="/write">
-        <!-- Title -->
-        <div>
-            <label>Title</label>
-            <input type="text" name="title" placeholder="Typing title" value="" />
-        </div>
-        <!-- Writer name-->
-        <div>
-            <label>Writer</label>
-            <input type="text" name="writer" placeholder="Typing name" value="" />
-        </div>
-        <!-- Password -->
-        <div>
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Typing password" />
-        </div>
-        <!--Typing text -->
-        <div>
-            <label>Typing Text</label><br />
-            <textarea placeholder="Text" name="content" cols="50" rows="10"></textarea>
-            <br />
-            <!-- Button -->
-            <div>
-                <button type="submit">Save</button>
-                <button type="button" onclick="location.href='/'">Cancer</button>
-            </div>
-        </div>
-    </form>
+  <!-- modify URL -->
+  <form name="boardForm" method="post" {{#if (eq mode "create" )}}action="/write" {{else}}action="/modify" {{/if}}>
+    {{#if (eq mode "modify")}}
+    <input type="hidden" name="id" value="{{post._id}}" />
+    {{/if}}
+
+    <!-- Typing title  -->
+    <div>
+      <label>Title</label>
+      <input type="text" name="title" placeholder="Typing title" value="{{post.title}}" />
+    </div>
+    <!-- Typing name  -->
+    <div>
+      <label>Name</label>
+      <input type="text" name="writer" placeholder="Typing name" value="{{post.writer}}" />
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Typing password" />
+    </div>
+
+    <div>
+      <label>Typing content</label><br />
+      <textarea placeholder="content" name="content" cols="50" rows="10">{{post.content}}</textarea>
+      <br />
+      <!-- button -->
+      <div>
+        <button type="submit">Save</button>
+        <button type="button" onclick="location.href='/'">Cancel</button>
+      </div>
+  </form>
 </div>
