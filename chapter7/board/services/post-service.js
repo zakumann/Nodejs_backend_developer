@@ -64,7 +64,7 @@ module.exports = {
   list,
   writePost,
   getDetailPost,
-  getPostByIdAndPassword,
   getPostById,
+  getPostByIdAndPassword,
   updatePost,
 };
