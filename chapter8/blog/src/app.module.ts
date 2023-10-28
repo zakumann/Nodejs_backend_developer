@@ -8,7 +8,7 @@ import { Blog, BlogSchema } from './blog.schema';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      "mongodb+srv://*********:***************@cluster0.htaezp5.mongodb.net/?retryWrites=true&w=majority",
+      "mongodb+srv://samuel742:Gunzaku42th!@tk@cluster0.htaezp5.mongodb.net/?retryWrites=true&w=majority",
     ),
     //몽고디비 스키마 설정
     MongooseModule.forFeature([{ name: Blog.name, schema: BlogSchema }]),
