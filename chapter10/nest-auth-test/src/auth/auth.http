@@ -29,3 +29,23 @@ content-type: application/json
 
 ### Guard
 GET http://localhost:3000/auth/test-guard
+
+### Login3
+POST http://localhost:3000/auth/login3
+content-type: application/json
+
+{
+    "email": "andy8@podo.com",
+    "password": "1234"
+}
+
+### Login3 wrongpassword
+POST http://localhost:3000/auth/login3
+Content-type: application/json
+{
+    "email": "andy8@podo.com",
+    "password": "12345"
+}
+
+### Validation success
+GET http://localhost:3000/auth/test-guard2
