@@ -23,7 +23,7 @@ export class UserService {
     }
 
     //유저 정보 업데이트. username과 password만 변경
-    async updateUser(email: string, _user: User){
+    async updateUser(email, _user){
         const user: User = await this.getUser(email);
         console.log(_user);
         user.username = _user.username;
