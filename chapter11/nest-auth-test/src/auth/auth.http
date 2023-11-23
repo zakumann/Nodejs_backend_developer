@@ -1,0 +1,51 @@
+### Registration
+
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "email":"andy1@podo.com",
+    "password": "1234",
+    "username": "andy"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "email": "andy8@podo.com",
+    "password": "1234"
+}
+
+### Login 2 : LoginGuard
+POST http://localhost:3000/auth/login2
+content-type: application/json
+
+{
+    "email": "andy8@poco.com",
+    "password": "1234"
+}
+
+### Guard
+GET http://localhost:3000/auth/test-guard
+
+### Login3
+POST http://localhost:3000/auth/login3
+content-type: application/json
+
+{
+    "email": "andy8@podo.com",
+    "password": "1234"
+}
+
+### Login3 wrongpassword
+POST http://localhost:3000/auth/login3
+Content-type: application/json
+{
+    "email": "andy8@podo.com",
+    "password": "12345"
+}
+
+### Validation success
+GET http://localhost:3000/auth/test-guard2
